@@ -4,12 +4,11 @@ import db from '.';
 
 class Payment extends Model {
   public id: number;
-  public paymentMethod: number;
+  public paymentMethod: string;
   public installmentAmount: number;
   public valueOfPlots: number;
   public totalPayment: number;
-  public startDate: Date;
-  public endDate: Date;
+  public startDate: string;
   public patientId: number;
 }
 

@@ -7,6 +7,13 @@ const createPayment = async (req: Request, res: Response) => {
   return res.status(201).json(payment);
 };
 
+const getAllPayment = async (req: Request, res: Response) => {
+  const payments = await Service.getAllPayment();
+
+  return res.status(200).json(payments);
+};
+
 export default {
   createPayment,
+  getAllPayment,
 };
