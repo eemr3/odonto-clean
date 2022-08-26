@@ -6,12 +6,14 @@ import { generateToken } from '../auth/token';
 const signIn = async (email: string, password: string) => {
   const user = await User.findOne({ where: { email } });
   if (!user) {
-    throw errorBase(404, 'E-mail or password incorrect');
+    throw errorBase(403, 'E-mail or password incorrect');
   }
 
   const decryptPassword = compareSync(password, user.password);
+  console.log(decryptPassword);
+
   if (!decryptPassword) {
-    throw errorBase(404, 'E-mail or password incorrect');
+    throw errorBase(403, 'E-mail or password incorrect');
   }
 
   const token = generateToken(user.name, user.email);
