@@ -1,5 +1,5 @@
 import * as express from 'express';
-import UserRoutes from '../routes/User/User.routes';
+import Routes from '../routes/';
 
 const app = express();
 
@@ -9,6 +9,6 @@ app.get('/', (_req, res) => {
   res.send('Estamos no ar!! :) ');
 });
 
-app.use('/users', UserRoutes);
+app.use('/users', Routes.UserRoutes);
 
 export default app;
