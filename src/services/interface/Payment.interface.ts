@@ -1,4 +1,5 @@
 export interface IPayment {
+  title: string;
   paymentMethod: string;
   installmentAmount: number;
   valueOfPlots: number;

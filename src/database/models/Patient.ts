@@ -1,7 +1,6 @@
 import { INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
 import Payment from './Payment';
-// import OtherModel from './OtherModel';
 
 class Patient extends Model {
   public id: number;
@@ -37,7 +36,6 @@ Patient.init(
     },
   },
   {
-    // ... Outras configs
     underscored: true,
     sequelize: db,
     modelName: 'patients',
@@ -45,15 +43,8 @@ Patient.init(
   },
 );
 
-/**
- * `Workaround` para aplicar as associations em TS:
- * Associations 1:N devem ficar em uma das instâncias de modelo
- * */
-
 Payment.belongsTo(Patient, { foreignKey: 'patientId', as: 'idPatient' });
-// Payment.belongsTo(Patient, { foreignKey: 'awayTeam', as: 'teamAway' });
 
 Patient.hasMany(Payment, { foreignKey: 'patientId', as: 'idPatient' });
-// Patient.hasMany(Payment, { foreignKey: 'awayTeam', as: 'teamAway' });
 
 export default Patient;

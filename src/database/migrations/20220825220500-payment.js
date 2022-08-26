@@ -9,6 +9,7 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
+      title: Sequelize.STRING,
       payment_method: Sequelize.STRING,
       installment_amount: Sequelize.INTEGER,
       value_of_plots: Sequelize.DECIMAL,

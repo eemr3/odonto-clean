@@ -15,7 +15,6 @@ app.use('/users', Routes.UserRoutes);
 app.use('/login', Routes.LoginRoutes);
 app.use('/patients', Routes.PatientRoutes);
 app.use('/payments', Routes.PaymentRoutes);
-app.use('/procedures', Routes.ProcedureRoutes);
 
 app.use(handleError);
 export default app;

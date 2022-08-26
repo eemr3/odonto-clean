@@ -1,9 +1,9 @@
 import { DataTypes, DATEONLY, DECIMAL, INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
-// import OtherModel from './OtherModel';
 
 class Payment extends Model {
   public id: number;
+  public title: string;
   public paymentMethod: string;
   public installmentAmount: number;
   public valueOfPlots: number;
@@ -19,6 +19,10 @@ Payment.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
+    },
+    title: {
+      type: STRING,
+      allowNull: false,
     },
     paymentMethod: {
       type: STRING,
@@ -48,23 +52,11 @@ Payment.init(
     },
   },
   {
-    // ... Outras configs
     underscored: true,
     sequelize: db,
     modelName: 'payments',
     timestamps: false,
   },
 );
-
-/**
- * `Workaround` para aplicar as associations em TS:
- * Associations 1:N devem ficar em uma das instâncias de modelo
- * */
-
-// OtherModel.belongsTo(Payment, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
-// OtherModel.belongsTo(Payment, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
-
-// Payment.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Payment.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
 export default Payment;
