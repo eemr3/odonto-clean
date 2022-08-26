@@ -17,9 +17,6 @@ module.exports = {
         type: Sequelize.DATEONLY,
         default: Sequelize.NOW,
       },
-      end_date: {
-        type: Sequelize.DATEONLY,
-      },
       patient_id: {
         type: Sequelize.INTEGER,
         references: {

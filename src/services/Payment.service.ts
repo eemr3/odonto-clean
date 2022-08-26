@@ -1,7 +1,18 @@
 import Payment from '../database/models/Payment';
+import { IPayment } from './interface/Payment.interface';
 
-const createNewPayment = async (data: any) => {
-  const payment = await Payment.create(data);
+const createNewPayment = async (data: IPayment) => {
+  const { paymentMethod, installmentAmount, valueOfPlots, patientId } = data;
+
+  const calcTotal = installmentAmount * valueOfPlots;
+
+  const payment = await Payment.create({
+    paymentMethod,
+    installmentAmount,
+    valueOfPlots,
+    totalPayment: calcTotal,
+    patientId,
+  });
 
   return payment;
 };
