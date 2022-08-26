@@ -40,7 +40,7 @@ Patient.init(
     // ... Outras configs
     underscored: true,
     sequelize: db,
-    modelName: 'users',
+    modelName: 'patients',
     timestamps: false,
   },
 );

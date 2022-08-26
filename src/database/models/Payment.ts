@@ -1,15 +1,16 @@
-import { DATEONLY, DECIMAL, INTEGER, Model, STRING } from 'sequelize';
+import { DataTypes, DATEONLY, DECIMAL, INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
 // import OtherModel from './OtherModel';
 
 class Payment extends Model {
   public id: number;
-  public payment_method: number;
-  public installment_amount: number;
-  public value_of_plots: number;
-  public total_payment: number;
-  public start_date: Date;
-  public end_date: Date;
+  public paymentMethod: number;
+  public installmentAmount: number;
+  public valueOfPlots: number;
+  public totalPayment: number;
+  public startDate: Date;
+  public endDate: Date;
+  public patientId: number;
 }
 
 Payment.init(
@@ -20,36 +21,41 @@ Payment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    payment_method: {
+    paymentMethod: {
       type: STRING,
       allowNull: false,
     },
-    installment_amount: {
+    installmentAmount: {
       type: INTEGER,
       allowNull: false,
     },
-    value_of_plots: {
+    valueOfPlots: {
       type: DECIMAL(5, 2),
       allowNull: false,
     },
-    total_payment: {
+    totalPayment: {
       type: DECIMAL(5, 2),
       allowNull: false,
     },
-    start_date: {
+    startDate: {
       type: DATEONLY,
       allowNull: false,
+      defaultValue: DataTypes.NOW,
     },
-    end_date: {
+    endDate: {
       type: DATEONLY,
+    },
+    patientId: {
+      type: INTEGER,
       allowNull: false,
+      primaryKey: true,
     },
   },
   {
     // ... Outras configs
     underscored: true,
     sequelize: db,
-    modelName: 'users',
+    modelName: 'payments',
     timestamps: false,
   },
 );

@@ -29,7 +29,7 @@ Procedure.init(
     // ... Outras configs
     underscored: true,
     sequelize: db,
-    modelName: 'users',
+    modelName: 'procedures',
     timestamps: false,
   },
 );

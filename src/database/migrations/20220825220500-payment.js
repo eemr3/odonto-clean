@@ -19,7 +19,6 @@ module.exports = {
       },
       end_date: {
         type: Sequelize.DATEONLY,
-        default: Sequelize.NOW,
       },
       patient_id: {
         type: Sequelize.INTEGER,
@@ -31,7 +30,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
+  async down(queryInterface, _Sequelize) {
     await queryInterface.dropTable('payments');
   },
 };
