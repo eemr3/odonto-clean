@@ -3,7 +3,11 @@ import User from '../database/models/User';
 import { errorBase } from '../utils/errorBase';
 import { generateToken } from '../auth/token';
 
-const signIn = async (email: string, password: string) => {
+type Tokne = {
+  token: string;
+};
+
+const signIn = async (email: string, password: string): Promise<Tokne> => {
   const user = await User.findOne({ where: { email } });
   if (!user) {
     throw errorBase(403, 'E-mail or password incorrect');
