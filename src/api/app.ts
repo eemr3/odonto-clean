@@ -1,5 +1,7 @@
-import * as express from 'express';
+import 'express-async-errors';
+import express from 'express';
 import Routes from '../routes/';
+import { handleError } from '../middlewares/handleError';
 
 const app = express();
 
@@ -10,5 +12,7 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/users', Routes.UserRoutes);
+app.use('/login', Routes.LoginRoutes);
 
+app.use(handleError);
 export default app;
