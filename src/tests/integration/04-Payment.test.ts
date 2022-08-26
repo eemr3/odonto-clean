@@ -36,6 +36,7 @@ describe('Rota "/payments"', () => {
 
       expect(chaiHttpResponse.status).to.be.equal(201);
       expect(chaiHttpResponse.body).to.have.property('id');
+      expect(chaiHttpResponse.body).to.have.property('title');
       expect(chaiHttpResponse.body).to.have.property('paymentMethod');
       expect(chaiHttpResponse.body).to.have.property('installmentAmount');
       expect(chaiHttpResponse.body).to.have.property('valueOfPlots');
@@ -59,8 +60,9 @@ describe('Rota "/payments"', () => {
 
       expect(chaiHttpResponse.status).to.be.equal(200);
 
-      responsePaymentMock.forEach((pay, index) => {
+      responsePaymentMock.forEach((_pay, index) => {
         expect(chaiHttpResponse.body[index]).to.have.property('id');
+        expect(chaiHttpResponse.body[index]).to.have.property('title');
         expect(chaiHttpResponse.body[index]).to.have.property('paymentMethod');
         expect(chaiHttpResponse.body[index]).to.have.property('installmentAmount');
         expect(chaiHttpResponse.body[index]).to.have.property('valueOfPlots');
