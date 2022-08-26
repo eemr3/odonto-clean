@@ -7,15 +7,12 @@ import app from '../../api/app';
 import User from '../../database/models/User';
 
 import { Response } from 'superagent';
-import {
-  paylodUserMock,
-  resultCreateUserMock,
-  resultFindOneUserMock,
-} from '../mocks/User.mock';
+import { paylodUserMock, resultCreateUserMock } from '../mocks/User.mock';
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
+
 describe('Rota User', () => {
   let chaiHttpResponse: Response;
   describe('rota "/user" metdo "post" create user', () => {
