@@ -1,14 +1,14 @@
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, useState } from 'react';
 import { AxiosError } from 'axios';
 import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
-import { IContext, IUser, SignInDataType } from './types';
+import { IChildrenProps, IContext, IUser, SignInDataType } from './types';
 import { loginRequest } from './utils';
 
-export const AppContext = createContext({} as IContext);
+export const AuthContext = createContext({} as IContext);
 
-const AppProvider = ({ children }: { children: ReactNode }) => {
+const AuthProvider = ({ children }: IChildrenProps) => {
   const history = useHistory();
   const [user, setUser] = useState<IUser>({} as IUser);
 
@@ -37,8 +37,10 @@ const AppProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AppContext.Provider value={{ signIn, logout, user }}>{children}</AppContext.Provider>
+    <AuthContext.Provider value={{ signIn, logout, user, setUser }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
-export default AppProvider;
+export default AuthProvider;
