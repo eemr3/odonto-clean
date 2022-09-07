@@ -11,9 +11,7 @@ module.exports = {
       },
       title: Sequelize.STRING,
       payment_method: Sequelize.STRING,
-      installment_amount: Sequelize.INTEGER,
-      value_of_plots: Sequelize.DECIMAL,
-      total_payment: Sequelize.DECIMAL,
+      in_cash: Sequelize.DECIMAL,
       start_date: {
         type: Sequelize.DATEONLY,
         default: Sequelize.NOW,
