@@ -7,6 +7,7 @@ import Patient from '../../database/models/Patient';
 
 import { Response } from 'superagent';
 import { payloadPatientMock, responsePatientMock } from '../mocks/Patient.mock';
+import { token } from '../mocks/token';
 
 chai.use(chaiHttp);
 
@@ -29,6 +30,7 @@ describe('Rota Patient', () => {
       chaiHttpResponse = await chai
         .request(app)
         .post('/patients')
+        .set('authorization', token)
         .send(payloadPatientMock);
 
       expect(chaiHttpResponse.status).to.be.equal(201);
@@ -55,6 +57,7 @@ describe('Rota Patient', () => {
       chaiHttpResponse = await chai
         .request(app)
         .post('/patients')
+        .set('authorization', token)
         .send(payloadPatientMock);
       expect(chaiHttpResponse.status).to.be.equal(409);
       expect(chaiHttpResponse.body).to.have.property('message');
@@ -75,6 +78,7 @@ describe('Rota Patient', () => {
       chaiHttpResponse = await chai
         .request(app)
         .get('/patients/1')
+        .set('authorization', token)
         .send(payloadPatientMock);
       expect(chaiHttpResponse.status).to.be.equal(200);
       expect(chaiHttpResponse.body).to.have.property('id');
@@ -98,6 +102,7 @@ describe('Rota Patient', () => {
       chaiHttpResponse = await chai
         .request(app)
         .get('/patients/10')
+        .set('authorization', token)
         .send(payloadPatientMock);
       expect(chaiHttpResponse.status).to.be.equal(404);
       expect(chaiHttpResponse.body).to.have.property('message');
