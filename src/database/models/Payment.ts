@@ -1,13 +1,12 @@
 import { DataTypes, DATEONLY, DECIMAL, INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
+import PaymentDateValue from './paymentdatevalue';
 
 class Payment extends Model {
   public id: number;
   public title: string;
   public paymentMethod: string;
-  public installmentAmount: number;
-  public valueOfPlots: number;
-  public totalPayment: number;
+  public inCash: number;
   public startDate: string;
   public patientId: number;
 }
@@ -28,15 +27,15 @@ Payment.init(
       type: STRING,
       allowNull: false,
     },
-    installmentAmount: {
-      type: INTEGER,
-      allowNull: false,
-    },
-    valueOfPlots: {
-      type: DECIMAL(5, 2),
-      allowNull: false,
-    },
-    totalPayment: {
+    // installmentAmount: {
+    //   type: INTEGER,
+    //   allowNull: false,
+    // },
+    // valueOfPlots: {
+    //   type: DECIMAL(5, 2),
+    //   allowNull: false,
+    // },
+    inCash: {
       type: DECIMAL(5, 2),
       allowNull: false,
     },
@@ -58,5 +57,9 @@ Payment.init(
     timestamps: false,
   },
 );
+
+PaymentDateValue.belongsTo(Payment, { foreignKey: 'paymentId', as: 'idPayment' });
+
+Payment.hasMany(PaymentDateValue, { foreignKey: 'paymentId', as: 'idPayment' });
 
 export default Payment;
