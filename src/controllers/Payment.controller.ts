@@ -13,7 +13,17 @@ const getAllPayment = async (req: Request, res: Response) => {
   return res.status(200).json(payments);
 };
 
+const getPaymentByPeriod = async (req: Request, res: Response) => {
+  const { initialDate, finalDate } = req.query;
+  const payment = await Service.getPaymentByPeriod(
+    initialDate as string,
+    finalDate as string,
+  );
+
+  return res.status(200).json(payment);
+};
 export default {
   createPayment,
   getAllPayment,
+  getPaymentByPeriod,
 };
