@@ -7,6 +7,7 @@ class User extends Model {
   public name: string;
   public email: string;
   public password: string;
+  public imageUrl: string;
 }
 
 User.init(
@@ -29,6 +30,9 @@ User.init(
     password: {
       type: STRING,
       allowNull: false,
+    },
+    imageUrl: {
+      type: STRING,
     },
   },
   {
