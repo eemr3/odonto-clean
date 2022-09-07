@@ -12,6 +12,7 @@ module.exports = {
       name: Sequelize.STRING,
       email: Sequelize.STRING,
       password: Sequelize.STRING,
+      image_url: Sequelize.STRING,
     });
   },
 
