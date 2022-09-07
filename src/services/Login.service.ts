@@ -14,13 +14,12 @@ const signIn = async (email: string, password: string): Promise<Tokne> => {
   }
 
   const decryptPassword = compareSync(password, user.password);
-  console.log(decryptPassword);
 
   if (!decryptPassword) {
     throw errorBase(403, 'E-mail or password incorrect');
   }
 
-  const token = generateToken(user.name, user.email);
+  const token = generateToken(user.name, user.email, user.imageUrl);
 
   return { token };
 };
