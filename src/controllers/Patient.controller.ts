@@ -13,7 +13,14 @@ const getPatientById = async (req: Request, res: Response) => {
   return res.status(200).json(patient);
 };
 
+const getPatientByDocument = async (req: Request, res: Response) => {
+  const { cpf } = req.query;
+  const patient = await Service.getPatientByDocument(cpf as string);
+
+  return res.status(200).json(patient);
+};
 export default {
   createPatient,
   getPatientById,
+  getPatientByDocument,
 };
