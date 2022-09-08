@@ -1,8 +1,8 @@
-import { DataTypes, DATEONLY, DECIMAL, INTEGER, Model, STRING } from 'sequelize';
+import { DATEONLY, DECIMAL, INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
-import PaymentDateValue from './paymentdatevalue';
+import TreatmentDateValue from './treatmentdatevalue';
 
-class Payment extends Model {
+class Treatment extends Model {
   public id: number;
   public title: string;
   public paymentMethod: string;
@@ -11,7 +11,7 @@ class Payment extends Model {
   public patientId: number;
 }
 
-Payment.init(
+Treatment.init(
   {
     id: {
       type: INTEGER,
@@ -19,7 +19,7 @@ Payment.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    treatment: {
       type: STRING,
       allowNull: false,
     },
@@ -27,14 +27,6 @@ Payment.init(
       type: STRING,
       allowNull: false,
     },
-    // installmentAmount: {
-    //   type: INTEGER,
-    //   allowNull: false,
-    // },
-    // valueOfPlots: {
-    //   type: DECIMAL(5, 2),
-    //   allowNull: false,
-    // },
     inCash: {
       type: DECIMAL(5, 2),
       allowNull: false,
@@ -52,13 +44,19 @@ Payment.init(
   {
     underscored: true,
     sequelize: db,
-    modelName: 'payments',
+    modelName: 'treatments',
     timestamps: false,
   },
 );
 
-PaymentDateValue.belongsTo(Payment, { foreignKey: 'paymentId', as: 'idPayment' });
+TreatmentDateValue.belongsTo(Treatment, {
+  foreignKey: 'treatmentId',
+  as: 'treatmentsValues',
+});
 
-Payment.hasMany(PaymentDateValue, { foreignKey: 'paymentId', as: 'idPayment' });
+Treatment.hasMany(TreatmentDateValue, {
+  foreignKey: 'treatmentId',
+  as: 'treatmentsValues',
+});
 
-export default Payment;
+export default Treatment;

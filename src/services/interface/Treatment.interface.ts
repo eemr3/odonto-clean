@@ -1,5 +1,5 @@
-export interface IPayment {
-  title: string;
+export interface ITreatment {
+  treatment: string;
   paymentMethod: string;
   installmentAmount: number;
   startDate: string;

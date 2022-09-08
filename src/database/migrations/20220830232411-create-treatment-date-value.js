@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('payment_date_values', {
+    await queryInterface.createTable('treatment_date_values', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,18 +10,17 @@ module.exports = {
       },
       installment_amount: Sequelize.INTEGER,
       value_of_plots: Sequelize.DECIMAL,
-      // total_payment: Sequelize.DECIMAL,
       installment_date: Sequelize.DATEONLY,
-      payment_id: {
+      treatment_id: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'payments',
+          model: 'treatments',
           key: 'id',
         },
       },
     });
   },
   async down(queryInterface, _Sequelize) {
-    await queryInterface.dropTable('payment_date_values');
+    await queryInterface.dropTable('treatment_date_values');
   },
 };

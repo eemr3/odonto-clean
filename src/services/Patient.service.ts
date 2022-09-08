@@ -1,4 +1,4 @@
-import Payment from '../database/models/Payment';
+import Treatment from '../database/models/Treatment';
 import Patient from '../database/models/Patient';
 import { IPatient } from './interface/Patient.interface';
 import { errorBase } from '../utils/errorBase';
@@ -19,7 +19,7 @@ const createNewPatient = async (data: IPatient): Promise<Patient> => {
 const getPatientById = async (id: number): Promise<Patient> => {
   const patient = await Patient.findOne({
     where: { id },
-    include: [{ model: Payment, as: 'idPatient' }],
+    include: [{ model: Treatment, as: 'treatments' }],
   });
 
   if (!patient) {
@@ -32,7 +32,7 @@ const getPatientById = async (id: number): Promise<Patient> => {
 const getPatientByDocument = async (cpf: string) => {
   const patient = await Patient.findOne({
     where: { document: cpf },
-    include: [{ model: Payment, as: 'idPatient' }],
+    include: [{ model: Treatment, as: 'treatments' }],
   });
 
   if (!patient) {

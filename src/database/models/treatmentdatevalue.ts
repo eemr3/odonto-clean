@@ -1,16 +1,16 @@
-import { DataTypes, DATEONLY, DECIMAL, INTEGER, Model, STRING } from 'sequelize';
+import { DATEONLY, DECIMAL, INTEGER, Model } from 'sequelize';
 import db from '.';
 
-class PaymentDateValue extends Model {
+class TreatmentDateValue extends Model {
   public id: number;
   public paymentMethod: string;
   public installmentAmount: number;
   public valueOfPlots: number;
   public installmentDate: string;
-  public paymentId: number;
+  public treatmentId: number;
 }
 
-PaymentDateValue.init(
+TreatmentDateValue.init(
   {
     id: {
       type: INTEGER,
@@ -26,15 +26,11 @@ PaymentDateValue.init(
       type: DECIMAL(5, 2),
       allowNull: false,
     },
-    // totalPayment: {
-    //   type: DECIMAL(5, 2),
-    //   allowNull: false,
-    // },
     installmentDate: {
       type: DATEONLY,
       allowNull: false,
     },
-    paymentId: {
+    treatmentId: {
       type: INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -43,9 +39,9 @@ PaymentDateValue.init(
   {
     underscored: true,
     sequelize: db,
-    modelName: 'payment_date_values',
+    modelName: 'treatment_date_values',
     timestamps: false,
   },
 );
 
-export default PaymentDateValue;
+export default TreatmentDateValue;

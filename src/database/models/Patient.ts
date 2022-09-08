@@ -1,6 +1,6 @@
 import { INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
-import Payment from './Payment';
+import Treatment from './Treatment';
 
 class Patient extends Model {
   public id: number;
@@ -43,8 +43,8 @@ Patient.init(
   },
 );
 
-Payment.belongsTo(Patient, { foreignKey: 'patientId', as: 'idPatient' });
+Treatment.belongsTo(Patient, { foreignKey: 'patientId', as: 'treatments' });
 
-Patient.hasMany(Payment, { foreignKey: 'patientId', as: 'idPatient' });
+Patient.hasMany(Treatment, { foreignKey: 'patientId', as: 'treatments' });
 
 export default Patient;

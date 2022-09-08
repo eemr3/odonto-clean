@@ -19,7 +19,7 @@ app.get('/', (_req, res) => {
 app.use('/users', Routes.UserRoutes);
 app.use('/login', Routes.LoginRoutes);
 app.use('/patients', Routes.PatientRoutes);
-app.use('/payments', Routes.PaymentRoutes);
+app.use('/treatments', Routes.Treatment);
 
 app.use(handleError);
 export default app;
