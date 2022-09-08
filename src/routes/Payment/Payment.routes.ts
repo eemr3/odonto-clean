@@ -6,6 +6,6 @@ const router = Router();
 
 router.post('/', authMiddleware, Controller.createPayment);
 router.get('/', authMiddleware, Controller.getAllPayment);
-router.get('/search', Controller.getPaymentByPeriod);
+router.get('/search', authMiddleware, Controller.getPaymentByPeriod);
 
 export default router;
