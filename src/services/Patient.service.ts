@@ -29,7 +29,21 @@ const getPatientById = async (id: number): Promise<Patient> => {
   return patient;
 };
 
+const getPatientByDocument = async (cpf: string) => {
+  const patient = await Patient.findOne({
+    where: { document: cpf },
+    include: [{ model: Payment, as: 'idPatient' }],
+  });
+
+  if (!patient) {
+    throw errorBase(404, 'Patient not found');
+  }
+
+  return patient;
+};
+
 export default {
   createNewPatient,
   getPatientById,
+  getPatientByDocument,
 };
