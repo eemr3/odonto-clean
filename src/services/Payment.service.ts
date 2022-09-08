@@ -5,10 +5,11 @@ import { calcularParcelas } from '../utils/generateDates';
 import { queryPaymentByPeriod } from '../database/models/customQuery';
 
 const createNewPayment = async (data: IPayment): Promise<Payment> => {
-  const { title, paymentMethod, installmentAmount, valueOfPlots, patientId } = data;
-  const date = new Date();
+  const { title, paymentMethod, installmentAmount, startDate, valueOfPlots, patientId } =
+    data;
+
   const calcValue = [];
-  const dates = calcularParcelas(installmentAmount - 1, date.toLocaleDateString());
+  const dates = calcularParcelas(installmentAmount - 1, startDate);
 
   for (let index = 0; index < installmentAmount - 1; index += 1) {
     calcValue.push(valueOfPlots / installmentAmount);
@@ -18,6 +19,7 @@ const createNewPayment = async (data: IPayment): Promise<Payment> => {
     title,
     paymentMethod,
     inCash: totalInCash,
+    startDate,
     patientId,
   });
   const installment = installmentAmount - 1;
@@ -38,6 +40,7 @@ const createNewPayment = async (data: IPayment): Promise<Payment> => {
 const getAllPayment = async () => {
   const payments = await Payment.findAll({
     include: [{ model: PaymentDateValue, as: 'idPayment' }],
+    order: [['id', 'ASC']],
   });
 
   return payments;

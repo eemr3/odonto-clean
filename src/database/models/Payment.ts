@@ -42,7 +42,6 @@ Payment.init(
     startDate: {
       type: DATEONLY,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
     },
     patientId: {
       type: INTEGER,

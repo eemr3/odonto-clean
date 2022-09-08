@@ -1,7 +1,8 @@
 export function calcularParcelas(parcelas: number, stringData: string) {
-  const ano = stringData.substring(6, 10);
-  const mes = stringData.substring(3, 5);
-  const dia = stringData.substring(0, 2);
+  const newDate = new Date(stringData).toLocaleDateString();
+  const ano = newDate.substring(6, 10);
+  const mes = newDate.substring(3, 5);
+  const dia = newDate.substring(0, 2);
 
   const dataInicial = new Date(Number(ano), Number(mes), Number(dia));
   const dataParcela = new Date();

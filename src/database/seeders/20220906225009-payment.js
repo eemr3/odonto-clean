@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  async up(queryInterface, _Sequelize) {
     await queryInterface.bulkInsert(
       'payments',
       [
@@ -45,12 +45,7 @@ module.exports = {
     );
   },
 
-  async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('payments', null, {});
-     */
+  async down(queryInterface, _Sequelize) {
+    await queryInterface.bulkDelete('payments', null, {});
   },
 };

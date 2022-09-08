@@ -14,7 +14,6 @@ module.exports = {
       in_cash: Sequelize.DECIMAL,
       start_date: {
         type: Sequelize.DATEONLY,
-        default: Sequelize.NOW,
       },
       patient_id: {
         type: Sequelize.INTEGER,
