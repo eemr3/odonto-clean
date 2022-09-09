@@ -46,3 +46,17 @@ export interface IIncome {
   treatment: ITreatment[];
   total: number;
 }
+
+export interface IValuesFormik {
+  treatment: string;
+  paymentMethod: string;
+  installmentAmount: string;
+  startDate: string;
+  valueOfPlots: number;
+  patientId: string;
+}
+
+export interface IAppContext {
+  setIncomeData: (newState: IIncome | null | undefined) => void;
+  incomeData: IIncome | null | undefined;
+}
