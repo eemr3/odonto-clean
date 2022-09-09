@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import { IoEyeSharp, IoEyeOff, IoLockClosedSharp } from 'react-icons/io5';
 import { ToastContainer } from 'react-toastify';
-import { loginSchimaValidation } from '../schemas/Login.schima';
+import { loginSchemaValidation } from '../schemas/Login.schema';
 import { AuthContext } from '../contexts/AuthContext';
 import { SignInDataType } from '../contexts/types';
 
@@ -19,7 +19,7 @@ export default function App() {
       email: '',
       password: '',
     },
-    validationSchema: loginSchimaValidation,
+    validationSchema: loginSchemaValidation,
     onSubmit: (values) => {
       handleSignIn(values);
     },
