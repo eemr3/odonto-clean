@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { IPatient } from '../contexts/types';
 import { requestPatientByDocument } from '../contexts/utils';
-import { searchSchima } from '../schemas/Search.schima';
+import { searchSchema } from '../schemas/Search.schema';
 
 function SearchPatient() {
   const history = useHistory();
@@ -34,7 +34,7 @@ function SearchPatient() {
     initialValues: {
       cpf: '',
     },
-    validationSchema: searchSchima,
+    validationSchema: searchSchema,
     onSubmit: (values) => {
       handleGetPatient(values.cpf);
     },
