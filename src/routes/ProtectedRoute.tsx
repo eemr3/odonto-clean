@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import { Redirect } from 'react-router-dom';
-import Cookie from 'js-cookie';
+import Cookies from 'js-cookie';
 
 export const ProtecteRoute = ({ children }: { children: ReactNode }) => {
-  const cookie = Cookie.get('ut');
+  const cookie = Cookies.get('ut');
 
   if (!cookie) {
     return <Redirect to="/login" />;
