@@ -60,3 +60,10 @@ export interface IAppContext {
   setIncomeData: (newState: IIncome | null | undefined) => void;
   incomeData: IIncome | null | undefined;
 }
+
+export interface IPatientData {
+  name: string;
+  email: string;
+  phone: string;
+  document: string;
+}
