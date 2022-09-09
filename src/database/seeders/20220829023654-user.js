@@ -9,7 +9,7 @@ module.exports = {
           name: 'Érica',
           email: 'erica@email.com',
           password: '$2a$10$uuOBmhn66fIckoURoiir2uUZZwTZBVJPBKeQEpRutQfqDzeb4MLAq', //123456
-          image_url: 'http://localhost:3333/images/erica_dentista.jpg',
+          image_url: 'https://back-softeo.herokuapp.com/images/erica_dentista.jpg',
         },
       ],
       {},
