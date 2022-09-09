@@ -2,7 +2,10 @@ import TreatmentDateValue from '../database/models/treatmentdatevalue';
 import Treatment from '../database/models/Treatment';
 import { ITreatment } from './interface/Treatment.interface';
 import { calcularParcelas } from '../utils/generateDates';
-import { queryTreatmentByPeriod } from '../database/models/customQuery';
+import {
+  queryfindTreatmentByPeriod,
+  querySumTreatmentByPeriod,
+} from '../database/models/customQuery';
 
 const createTreatment = async (data: ITreatment): Promise<Treatment> => {
   const {
@@ -55,16 +58,18 @@ const getAllTreatments = async () => {
   return payments;
 };
 
-const getTreatmentByPeriod = async (initialDate: string, finalDate: string) => {
-  console.log(initialDate, finalDate);
+const getSumTreatmentByPeriod = async (initialDate: string, finalDate: string) => {
+  const sumTraitement = await querySumTreatmentByPeriod(initialDate, finalDate);
+  const treatment = await queryfindTreatmentByPeriod(initialDate, finalDate);
 
-  const payment = await queryTreatmentByPeriod(initialDate, finalDate);
-
-  return { payment: Number(payment.total_recebido_cash) + Number(payment.pdv) };
+  return {
+    treatment,
+    total: Number(sumTraitement.total_recebido_cash) + Number(sumTraitement.pdv),
+  };
 };
 
 export default {
   createTreatment,
   getAllTreatments,
-  getTreatmentByPeriod,
+  getSumTreatmentByPeriod,
 };
