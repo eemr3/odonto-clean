@@ -1,12 +1,17 @@
 import { useFormik } from 'formik';
 import { useHistory, useParams } from 'react-router-dom';
+import { IValuesFormik } from '../contexts/types';
 import { requestTreatmentPost } from '../contexts/utils';
 import { treatmentSchema } from '../schemas/Treatment.schema';
 
+type IdParam = {
+  id: string;
+};
+
 function FormDentalTreatment() {
-  const { id } = useParams();
+  const { id } = useParams<IdParam>();
   const history = useHistory();
-  const submitDataTreatment = async (values) => {
+  const submitDataTreatment = async (values: IValuesFormik) => {
     try {
       const response = await requestTreatmentPost(values);
       console.log(response);
