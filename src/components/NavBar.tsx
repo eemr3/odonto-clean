@@ -1,22 +1,31 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
+import Cookies from 'js-cookie';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Logo from '../assets/images/logo.svg';
 import { AuthContext } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
+import { getPayload } from '../contexts/utils';
 
 const navigation = [
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Início', href: '/home', current: false },
+  { name: 'Faturamento', href: '/my-income', current: false },
+  { name: 'Cadastro', href: '/register', current: false },
 ];
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(' ');
 }
 
-export default function Example() {
+export default function NavBar() {
   const { logout } = useContext(AuthContext);
+  const [imageUrl, setImageUrl] = useState('');
+
+  useEffect(() => {
+    const token = Cookies.get('ut');
+    const imageUser = getPayload(token as string);
+    setImageUrl(imageUser);
+  }, []);
 
   return (
     <Disclosure as="nav" className="bg-fuchsia-800">
@@ -43,9 +52,9 @@ export default function Example() {
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        to={item.href}
                         className={classNames(
                           item.current
                             ? 'bg-fuchsia-900 text-white'
@@ -54,7 +63,7 @@ export default function Example() {
                         )}
                         aria-current={item.current ? 'page' : undefined}>
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -65,11 +74,7 @@ export default function Example() {
                   <div>
                     <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
+                      <img className="h-8 w-8 rounded-full" src={imageUrl} alt="" />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -105,8 +110,7 @@ export default function Example() {
               {navigation.map((item) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  href={item.href}
+                  as="button"
                   className={classNames(
                     item.current
                       ? 'bg-gray-900 text-white'
@@ -114,7 +118,7 @@ export default function Example() {
                     'block px-3 py-2 rounded-md text-base font-medium',
                   )}
                   aria-current={item.current ? 'page' : undefined}>
-                  {item.name}
+                  <Link to={item.href}>{item.name}</Link>
                 </Disclosure.Button>
               ))}
             </div>
