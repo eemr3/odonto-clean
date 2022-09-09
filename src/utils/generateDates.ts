@@ -1,5 +1,7 @@
 export function calcularParcelas(parcelas: number, stringData: string) {
+  console.info('calcularParcelas', stringData);
   const newDate = new Date(stringData).toLocaleDateString();
+  console.info('calcularParcelas', newDate);
   const ano = newDate.substring(6, 10);
   const mes = newDate.substring(3, 5);
   const dia = newDate.substring(0, 2);
@@ -29,6 +31,6 @@ export function calcularParcelas(parcelas: number, stringData: string) {
       ),
     );
   }
-
+  console.info('calcularParcelas', dateArray);
   return dateArray;
 }

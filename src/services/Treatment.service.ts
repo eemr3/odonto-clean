@@ -19,7 +19,9 @@ const createTreatment = async (data: ITreatment): Promise<Treatment> => {
 
   const calcValue = [];
   const dates = calcularParcelas(installmentAmount - 1, startDate);
-  console.info(dates);
+  console.info('service', startDate);
+
+  console.info('service', dates);
 
   if (installmentAmount > 0) {
     for (let index = 0; index < installmentAmount - 1; index += 1) {
