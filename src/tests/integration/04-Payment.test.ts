@@ -3,7 +3,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 
 import app from '../../api/app';
-import Payment from '../../database/models/Payment';
+import Treatment from '../../database/models/Treatment';
 
 import { Response } from 'superagent';
 import {
@@ -17,22 +17,22 @@ chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Rota "/payments"', () => {
+describe('Rota "/treatments"', () => {
   let chaiHttpResponse: Response;
 
-  describe('create new payment', () => {
+  describe('create new treatment', () => {
     before(async () => {
-      sinon.stub(Payment, 'create').resolves(responsePaymentCreateMock as Payment);
+      sinon.stub(Treatment, 'create').resolves(responsePaymentCreateMock as Treatment);
     });
 
     after(() => {
-      (Payment.create as sinon.SinonStub).restore();
+      (Treatment.create as sinon.SinonStub).restore();
     });
 
     it('payment criado com sucesso', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .post('/payments')
+        .post('/treatments')
         .set('authorization', token)
         .send(payloadPaymentMock);
 
@@ -48,17 +48,17 @@ describe('Rota "/payments"', () => {
 
   describe('busca por todos os payment', () => {
     before(async () => {
-      sinon.stub(Payment, 'findAll').resolves(responsePaymentMock as Payment[]);
+      sinon.stub(Treatment, 'findAll').resolves(responsePaymentMock as Treatment[]);
     });
 
     after(() => {
-      (Payment.findAll as sinon.SinonStub).restore();
+      (Treatment.findAll as sinon.SinonStub).restore();
     });
 
     it('retorno de todos os payment', async () => {
       chaiHttpResponse = await chai
         .request(app)
-        .get('/payments')
+        .get('/treatments')
         .set('authorization', token);
 
       expect(chaiHttpResponse.status).to.be.equal(200);

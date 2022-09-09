@@ -2,11 +2,12 @@
   "name": "softeo-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "./build/api/server",
+  "main": "src/api/server.ts",
   "scripts": {
     "build": "/bin/sh tsc_eval.sh",
     "test": "mocha -r ts-node/register ./src/tests/**/*$NAME*.{test,spec}.ts -t 10000 --exit",
-    "start": "node .",
+    "start": "node build/api/server.js",
+    "postinstall": "tsc",
     "dev": "nodemon --watch \"./src/**\" ./src/api/server.ts"
   },
   "keywords": [],
