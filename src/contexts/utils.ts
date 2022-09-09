@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { api } from '../api/api';
-import { SignInDataType } from './types';
+import { IPatientData, SignInDataType } from './types';
 import jwt_decoded from 'jwt-decode';
 
 export const loginRequest = async ({ email, password }: SignInDataType) => {
@@ -42,6 +42,15 @@ export const requestSumTreatmentGet = async (initialDate: string, finalDate: str
     },
   );
   return response.data;
+};
+
+export const requestNewPatientPost = async (values: IPatientData) => {
+  const token = Cookies.get('ut');
+  await api.post('/patients', values, {
+    headers: {
+      Authorization: token as string,
+    },
+  });
 };
 
 type TokenData = {
