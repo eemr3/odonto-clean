@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 function correcaoDia(dia: number) {
   if (isNaN(dia)) return false;
 
@@ -44,7 +46,8 @@ export function calcularParcelas(parcelas: number, stringData: string) {
     resultado = `${dataParcela.getFullYear()}-${correcaoMes(
       dataParcela.getMonth() + 1,
     )}-${correcaoDia(dataParcela.getDate())}`;
-    dateArray.push(resultado);
+    const formateddate = moment(resultado);
+    dateArray.push(formateddate);
   }
   console.info(dateArray);
   return dateArray;
