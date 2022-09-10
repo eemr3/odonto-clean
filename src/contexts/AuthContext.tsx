@@ -33,7 +33,7 @@ const AuthProvider = ({ children }: IChildrenProps) => {
 
   const logout = () => {
     Cookies.remove('ut');
-    history.push('/login');
+    history.push('/');
   };
 
   return (

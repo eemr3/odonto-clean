@@ -6,7 +6,7 @@ export const ProtecteRoute = ({ children }: { children: ReactNode }) => {
   const cookie = Cookies.get('ut');
 
   if (!cookie) {
-    return <Redirect to="/login" />;
+    return <Redirect to="/" />;
   }
 
   return <>{children}</>;

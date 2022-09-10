@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import AppProvider from '../contexts/AppContext';
 import DentalTreatment from '../pages/DentalTreatment';
 import Home from '../pages/Home';
@@ -10,8 +10,7 @@ import { ProtecteRoute } from './ProtectedRoute';
 const AppRoutes = () => {
   return (
     <Switch>
-      <Redirect exact from="/" to="/login" />
-      <Route exact path="/login">
+      <Route exact path="/">
         <SignIn />
       </Route>
       <ProtecteRoute>
