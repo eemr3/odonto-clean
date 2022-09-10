@@ -47,8 +47,8 @@ export function calcularParcelas(parcelas: number, stringData: string) {
     resultado = `${dataParcela.getFullYear()}-${correcaoMes(
       dataParcela.getMonth() + 1,
     )}-${correcaoDia(dataParcela.getDate())}`;
-    const formateddate = moment(resultado);
-    dateArray.push(formateddate);
+    // const formateddate = moment(resultado);
+    dateArray.push(resultado);
   }
   console.info(dateArray);
   return dateArray;
