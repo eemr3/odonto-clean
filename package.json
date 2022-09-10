@@ -1,0 +1,21 @@
+{
+  "name": "softeo",
+  "version": "1.0.0",
+  "description": "Aplicação que realiza mini gerenciamento de um consultório dentário, onde pode-se cadastrar paciente, cadastrar tratamento e verificar o faturamento por período.",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "(cd back-end && npm install); (cd front-end && npm install)",
+    "install:apps": "(cd back-end && npm install); (cd front-end && npm install)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eemr3/desafio-softeo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eemr3/desafio-softeo/issues"
+  },
+  "homepage": "https://github.com/eemr3/desafio-softeo#readme"
+}
