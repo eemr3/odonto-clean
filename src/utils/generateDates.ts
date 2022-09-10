@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 function correcaoDia(dia: number) {
   if (isNaN(dia)) return false;
 
@@ -22,14 +20,11 @@ export function calcularParcelas(parcelas: number, stringData: string) {
   let ano = Number(stringData.substring(0, 4));
   let mes = Number(stringData.substring(5, 7));
   let dia = Number(stringData.substring(8, 10));
-  console.log('vamos', ano);
-  console.log('vamos', mes);
-  console.log('vamos', dia);
 
   if (Number(dia) === 29 && leapYear(ano)) dia = 28;
 
   let dataInicial = new Date(ano, mes, dia);
-  console.info(dataInicial);
+
   let dataParcela = new Date();
   const dateArray = [];
   let novoMes = 0;
@@ -47,9 +42,8 @@ export function calcularParcelas(parcelas: number, stringData: string) {
     resultado = `${dataParcela.getFullYear()}-${correcaoMes(
       dataParcela.getMonth() + 1,
     )}-${correcaoDia(dataParcela.getDate())}`;
-    // const formateddate = moment(resultado);
     dateArray.push(resultado);
   }
-  console.info(dateArray);
+
   return dateArray;
 }
