@@ -17,9 +17,9 @@ function leapYear(year: number) {
 
 //https://pt.stackoverflow.com/questions/155782/parcelamento-com-data-pulando-m%C3%AAs-de-fevereiro
 export function calcularParcelas(parcelas: number, stringData: string) {
-  let ano = Number(stringData.substring(0, 4));
-  let mes = Number(stringData.substring(5, 7));
-  let dia = Number(stringData.substring(8, 10));
+  let ano = typeof stringData === 'string' ? Number(stringData.substring(0, 4)) : 0;
+  let mes = typeof stringData === 'string' ? Number(stringData.substring(5, 7)) : 0;
+  let dia = typeof stringData === 'string' ? Number(stringData.substring(8, 10)) : 0;
 
   if (Number(dia) === 29 && leapYear(ano)) dia = 28;
 

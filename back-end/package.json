@@ -12,9 +12,7 @@
     "database": "npm run build && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "test": "mocha -r ts-node/register ./src/tests/**/*$NAME*.{test,spec}.ts -t 10000 --exit",
     "start": "node build/api/server.js",
-    "postinstall": "tsc",
-    "dev": "nodemon --watch \"./src/**\" ./src/api/server.ts",
-    "test:coverage": "nyc mocha --all --include models --include services --include controllers ./src/tests/**/*$NAME*.test.js --exit"
+    "postinstall": "tsc"
   },
   "keywords": [],
   "author": "Emerson Moreira",
@@ -45,6 +43,7 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
+    "nyc": "^15.1.0",
     "pg": "^8.8.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.21.4",
