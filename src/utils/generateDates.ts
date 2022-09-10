@@ -1,36 +1,50 @@
-export function calcularParcelas(parcelas: number, stringData: string) {
-  console.info('calcularParcelas', stringData);
-  const newDate = new Date(stringData).toLocaleDateString();
-  console.info('calcularParcelas', newDate);
-  const ano = newDate.substring(6, 10);
-  const mes = newDate.substring(3, 5);
-  const dia = newDate.substring(0, 2);
+function correcaoDia(dia: number) {
+  if (isNaN(dia)) return false;
 
-  const dataInicial = new Date(Number(ano), Number(mes), Number(dia));
-  const dataParcela = new Date();
+  return dia < 10 ? '0' + dia : dia;
+}
+
+function correcaoMes(mes: number) {
+  if (isNaN(mes)) return false;
+
+  return mes < 10 ? '0' + mes : mes;
+}
+
+//http://stackoverflow.com/a/16353241/2467235
+function leapYear(year: number) {
+  return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+}
+
+//https://pt.stackoverflow.com/questions/155782/parcelamento-com-data-pulando-m%C3%AAs-de-fevereiro
+export function calcularParcelas(parcelas: number, stringData: string) {
+  const newDate = new Date(stringData).toLocaleDateString();
+  let ano = Number(newDate.substring(6, 10));
+  let mes = Number(newDate.substring(3, 5));
+  let dia = Number(newDate.substring(0, 2));
+
+  if (Number(dia) === 29 && leapYear(ano)) dia = 28;
+
+  let dataInicial = new Date(ano, mes, dia);
+  console.log(dataInicial);
+  let dataParcela = new Date();
   const dateArray = [];
   let novoMes = 0;
   let novoAno = 0;
-
-  for (var p = 0; p < parcelas; p++) {
+  let resultado = '';
+  for (let p = 0; p < parcelas; p++) {
     novoMes = (dataInicial.getMonth() + p) % 12;
     novoMes = novoMes == 0 ? 12 : novoMes;
     novoAno = dataInicial.getFullYear() + (dataInicial.getMonth() + p - novoMes) / 12;
 
-    dataParcela.setDate(Number(dia));
+    dataParcela.setDate(dia);
     dataParcela.setMonth(novoMes);
     dataParcela.setFullYear(novoAno);
-    dateArray.push(
-      Date.UTC(
-        dataParcela.getUTCFullYear(),
-        dataParcela.getUTCMonth(),
-        dataParcela.getUTCDate(),
-        dataParcela.getUTCHours(),
-        dataParcela.getUTCMinutes(),
-        dataParcela.getUTCSeconds(),
-      ),
-    );
+
+    resultado = `${dataParcela.getFullYear()}-${correcaoMes(
+      dataParcela.getMonth() + 1,
+    )}-${correcaoDia(dataParcela.getDate())}`;
+    dateArray.push(resultado);
   }
-  console.info('calcularParcelas', dateArray);
+
   return dateArray;
 }
