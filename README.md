@@ -97,7 +97,7 @@ Obs: O back-end deve estar rodando para o front-end funcionar!
 ### Back-end
 Entre na pasta ``back-end`` e use o comando:
 ```bash
-npm run test:coverage
+npm test
 ```
 
 ## Informção do Front-end da aplicação
