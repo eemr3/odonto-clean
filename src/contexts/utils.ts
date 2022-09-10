@@ -46,11 +46,13 @@ export const requestSumTreatmentGet = async (initialDate: string, finalDate: str
 
 export const requestNewPatientPost = async (values: IPatientData) => {
   const token = Cookies.get('ut');
-  await api.post('/patients', values, {
+  const response = await api.post('/patients', values, {
     headers: {
       Authorization: token as string,
     },
   });
+
+  return response.data;
 };
 
 type TokenData = {

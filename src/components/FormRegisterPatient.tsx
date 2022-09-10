@@ -1,12 +1,15 @@
 import { useFormik } from 'formik';
+import { useHistory } from 'react-router-dom';
 import { requestNewPatientPost } from '../contexts/utils';
 import { registerPatientSchema } from '../schemas/RegisterPatient.schema';
 import { IPatientData } from '../contexts/types';
 
 function FormRegisterPatient() {
+  const history = useHistory();
   const createNewPatient = async (values: IPatientData) => {
     try {
-      await requestNewPatientPost(values);
+      const response = await requestNewPatientPost(values);
+      history.push(`/dental-treatment/${response.id}`);
     } catch (error) {
       console.info(error);
     }

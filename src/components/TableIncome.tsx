@@ -22,7 +22,7 @@ function TableIncome() {
                     Valor em dinheiro
                   </th>
                   <th className="w-1/6 min-w-[160px] text-lg font-semibold text-white py-3 lg:py-4 px-3 lg:px-4 border-l border-transparent">
-                    Valor parecela
+                    Valor parcela
                   </th>
                 </tr>
               </thead>
