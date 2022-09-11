@@ -65,7 +65,9 @@ const getSumTreatmentByPeriod = async (initialDate: string, finalDate: string) =
 
   return {
     treatment,
-    total: Number(sumTraitement.total_recebido_cash) + Number(sumTraitement.pdv),
+    sumTraitement,
+    total:
+      Number(sumTraitement.total_recebido_cash) + Number(sumTraitement.valor_parcelas),
   };
 };
 
