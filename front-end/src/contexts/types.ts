@@ -40,11 +40,18 @@ export interface ITreatment {
   start_date: string;
   in_cash: number;
   value_of_plots: number;
+  treatment: string;
+}
+
+export interface ISumTraitement {
+  total_recebido_cash: number;
+  valor_parcelas: number;
 }
 
 export interface IIncome {
   treatment: ITreatment[];
   total: number;
+  sumTraitement: ISumTraitement;
 }
 
 export interface IValuesFormik {
