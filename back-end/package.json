@@ -9,6 +9,7 @@
   "main": "src/api/server.ts",
   "scripts": {
     "build": "/bin/sh tsc_eval.sh",
+    "dev": "nodemon --watch \"./src/**\" ./src/api/server.ts",
     "database": "npm run build && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "test": "mocha -r ts-node/register ./src/tests/**/*$NAME*.{test,spec}.ts -t 10000 --exit",
     "start": "node build/api/server.js",
