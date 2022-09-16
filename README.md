@@ -1,4 +1,4 @@
-# Lista de Artigos
+# Odonto Clean
 
 Aplicação que realiza mini gerenciamento de um consultório dentário, onde pode-se cadastrar paciente, cadastrar tratamento e verificar o faturamento por período.
 
